@@ -1,0 +1,18 @@
+{
+  "name": "montop3node",
+  "version": "1.0.0",
+  "description": "Montop3 in node",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./node_modules/babel-cli/bin/babel-node.js --presets node6 ./app.js"
+  },
+  "author": "Michaël Villeneuve",
+  "license": "ISC",
+  "dependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-preset-node6": "^11.0.0",
+    "express": "^4.15.2",
+    "mongoose": "^4.9.3"
+  }
+}
