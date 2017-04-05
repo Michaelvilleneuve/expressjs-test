@@ -1,5 +1,3 @@
-import sha256 from 'sha256';
-import config from '../../../config/config';
 import User from './model';
 
 const Users = {
@@ -17,20 +15,16 @@ const Users = {
   },
 
   signIn(req, res) {
-    User.findOneAndUpdate(
-      { email: req.parameters.email, password: req.parameters.password },
-      { token: sha256(`${req.parameters.email}${req.parameters.password}${config.secret}`) },
-      (err, user) => {
-        console.log(user, err);
-        res.json(user);
-      }
-    );
+    const params = req.parameters.all();
+    User.authenticate(params.email, params.password)
+        .then((user) => res.json({ token: user.token }))
+        .catch(() => res.sendStatus(422));
   },
 
   create(req, res) {
     const user = new User(this.params(req));
-    user.token = sha256(`${user.email}${user.password}${config.secret}`);
-    user.save()
+    user.generateToken()
+        .save()
         .then(() => res.json(user))
         .catch((err) => {
           res.status(422);
