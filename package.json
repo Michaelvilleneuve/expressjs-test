@@ -10,12 +10,16 @@
   "author": "Michaël Villeneuve",
   "license": "ISC",
   "dependencies": {
+    "app-module-path": "^2.2.0",
     "babel-cli": "^6.24.0",
     "babel-preset-node6": "^11.0.0",
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "mongoose": "^4.9.3",
     "morgan": "^1.8.1",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "sha256": "^0.2.0",
     "strong-params": "^0.7.0"
   },
   "devDependencies": {

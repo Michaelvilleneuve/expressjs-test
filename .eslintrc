@@ -10,5 +10,6 @@
     "FormData": false,
     "Headers": false,
     "__DEV__": false,
+    "path": false
   }
 }

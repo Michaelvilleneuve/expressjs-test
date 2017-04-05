@@ -19,7 +19,8 @@ const schema = mongoose.Schema({
   fid_number: {
     type: String,
     required: true
-  }
+  },
+  token: String
 });
 
 const User = mongoose.model('User', schema);
