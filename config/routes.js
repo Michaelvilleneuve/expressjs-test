@@ -1,8 +1,11 @@
 import express from 'express';
-import services from '../api/services';
+import s from '../api/services';
 
 const router = express.Router();
 
-router.get('/users', (req, res) => services.Users.index(req, res));
+router.get('/users', (req, res) => s.Users.index(req, res));
+router.post('/users', (req, res) => s.Users.create(req, res));
+router.get('/users/:id', (req, res) => s.Users.show(req, res));
+router.delete('/users/:id', (req, res) => s.Users.destroy(req, res));
 
 export default router;
