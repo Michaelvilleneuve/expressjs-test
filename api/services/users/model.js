@@ -34,7 +34,7 @@ schema.pre('save', function (next) {
     // eslint-disable-next-line
     bcrypt.hash(this.password, salt, (err, hash) => {
       this.password = hash;
-      this.generateToken(true);
+      this.generateToken();
       next();
     });
   });
@@ -44,29 +44,24 @@ schema.statics.authenticate = function (email, password) {
   return new Promise((resolve, reject) => {
     User.findOne({ email }, 'token password')
         .then((user) => {
-          console.log(user);
-          user.comparePassword(password, (isMatch) => {
-            if (!isMatch) return reject();
-            user.generateToken()
-            .save((err, u) => {
-              if (!err) resolve(u);
-            });
-          });
-        })
-        .catch(() => reject());
+          user.comparePassword(password)
+              .then(() => resolve(user))
+              .catch(() => reject());
+          })
+          .catch(() => reject());
   });
 };
 
-schema.methods.comparePassword = function (password, callback) {
-  bcrypt.compare(password, this.password, (err, isMatch) => {
-    callback(isMatch);
+schema.methods.comparePassword = function (password) {
+  return new Promise((resolve, reject) => {
+    bcrypt.compare(password, this.password, (err, isMatch) => {
+      isMatch ? resolve() : reject();
+    });
   });
 };
 
-schema.methods.generateToken = function (doNotSave) {
-  console.log(sha256(`${this.email}${this.password}${config.secret}`));
+schema.methods.generateToken = function () {
   this.token = sha256(`${this.email}${this.password}${config.secret}`);
-  if (!doNotSave) this.save();
   return this;
 };
 

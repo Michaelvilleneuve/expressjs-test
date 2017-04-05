@@ -10,6 +10,7 @@ const Users = {
 
   show(req, res) {
     User.findById(req.params.id)
+        .select('email name fid_number')
         .then((user) => res.json(user))
         .catch(() => res.sendStatus(404));
   },
@@ -23,9 +24,8 @@ const Users = {
 
   create(req, res) {
     const user = new User(this.params(req));
-    user.generateToken()
-        .save()
-        .then(() => res.json(user))
+    user.generateToken(true).save()
+        .then(() => res.json({ token: user.token }))
         .catch((err) => {
           res.status(422);
           res.json(err);
