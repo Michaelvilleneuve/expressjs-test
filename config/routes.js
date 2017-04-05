@@ -1,11 +1,7 @@
-import express from 'express';
-import s from '../api/services';
+import userRoutes from '../api/services/users/routes';
 
-const router = express.Router();
+const combinedRoutes = (app) => {
+  app.use('/api/users', userRoutes);
+};
 
-router.get('/users', (req, res) => s.Users.index(req, res));
-router.post('/users', (req, res) => s.Users.create(req, res));
-router.get('/users/:id', (req, res) => s.Users.show(req, res));
-router.delete('/users/:id', (req, res) => s.Users.destroy(req, res));
-
-export default router;
+export default combinedRoutes;
