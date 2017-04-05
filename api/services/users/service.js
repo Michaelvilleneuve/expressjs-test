@@ -1,4 +1,4 @@
-import User from '../../../api/models/user';
+import User from './model';
 
 const Users = {
 
@@ -16,7 +16,10 @@ const Users = {
     const user = new User(this.params(req));
     user.save()
         .then(() => res.json(user))
-        .catch((err) => res.json(err));
+        .catch((err) => {
+          res.status(422);
+          res.json(err);
+        });
   },
 
   destroy(req, res) {
