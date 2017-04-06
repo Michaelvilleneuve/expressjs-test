@@ -11,6 +11,8 @@
     "FormData": false,
     "Headers": false,
     "__DEV__": false,
-    "path": false
+    "path": false,
+    "describe": false,
+    "it": false
   }
 }
