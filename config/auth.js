@@ -1,15 +1,13 @@
 import passport from 'passport';
-import LocalStrategy from 'passport-local';
+import BearerStrategy from 'passport-http-bearer';
 import User from '../api/services/users/model';
 
-passport.use(new LocalStrategy(
-  {
-    usernameField: 'email',
-    passwordField: 'password'
-  },
-  (email, password, done) => {
-    User.findOne({ email, password })
+passport.use(new BearerStrategy(
+  (token, done) => {
+    User.findOne({ token })
         .then((user) => done(null, user))
         .catch((err) => done(null, false, err));
   }
 ));
+
+export const auth = passport.authenticate('bearer', { session: false });

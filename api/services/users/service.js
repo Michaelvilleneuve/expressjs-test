@@ -26,10 +26,7 @@ const Users = {
     const user = new User(this.params(req));
     user.generateToken(true).save()
         .then(() => res.json({ token: user.token }))
-        .catch((err) => {
-          res.status(422);
-          res.json(err);
-        });
+        .catch((err) => res.status(422).json(err));
   },
 
   destroy(req, res) {

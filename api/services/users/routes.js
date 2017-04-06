@@ -1,10 +1,11 @@
 import express from 'express';
+import { auth } from '../../../config/auth';
 import Users from './service';
 
 const router = express.Router();
 
 router.route('/')
-      .get((req, res) => Users.index(req, res))
+      .get(auth, (req, res) => Users.index(req, res))
       .post((req, res) => Users.create(req, res));
 
 router.route('/:id')
