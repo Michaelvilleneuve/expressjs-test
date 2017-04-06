@@ -4,7 +4,7 @@
   "description": "Montop3 in node",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --compilers js:babel-core/register api/services/**/**.spec.js",
     "start": "nodemon app.js --exec ./node_modules/babel-cli/bin/babel-node.js --presets node6"
   },
   "author": "Michaël Villeneuve",
@@ -24,7 +24,9 @@
     "strong-params": "^0.7.0"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
     "eslint-config-rallycoding": "^3.2.0",
+    "mocha": "^3.2.0",
     "nodemon": "^1.11.0"
   }
 }
