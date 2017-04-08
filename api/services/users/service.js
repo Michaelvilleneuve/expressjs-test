@@ -31,8 +31,7 @@ const Users = {
 
   destroy(req, res) {
     User.remove({ _id: req.user.id })
-        .then(() => res.sendStatus(200))
-        .catch(() => res.sendStatus(404));
+        .then(() => res.sendStatus(200));
   },
 
   params(req) {

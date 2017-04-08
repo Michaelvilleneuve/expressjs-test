@@ -4,7 +4,8 @@
   "description": "Montop3 in node",
   "main": "app.js",
   "scripts": {
-    "test": "mocha --compilers js:babel-core/register api/services/**/**.spec.js",
+    "mocha": "mocha --compilers js:babel-core/register api/services/**/**.spec.js",
+    "test": "newman run tests/Montop3.postman_collection.json --environment tests/Montop3.postman_environment.json",
     "start": "nodemon app.js --exec ./node_modules/babel-cli/bin/babel-node.js --presets node6"
   },
   "author": "Michaël Villeneuve",
@@ -28,6 +29,7 @@
     "chai": "^3.5.0",
     "eslint-config-rallycoding": "^3.2.0",
     "mocha": "^3.2.0",
+    "newman": "^3.5.2",
     "nodemon": "^1.11.0"
   }
 }
