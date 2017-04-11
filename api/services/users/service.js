@@ -30,8 +30,10 @@ const Users = {
   },
 
   destroy(req, res) {
-    User.remove({ _id: req.user.id })
-        .then(() => res.sendStatus(200));
+    User.findOneAndRemove({ _id: req.user.id }, (err, user) => {
+      user.remove();
+      res.sendStatus(200);
+    });
   },
 
   params(req) {
