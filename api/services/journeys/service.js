@@ -9,7 +9,7 @@ const Journeys = {
 
   show(req, res) {
     Journey.findById(req.params.id)
-        .select('email name fid_number')
+        .select('title description lat lng image')
         .then((user) => res.json(user))
         .catch(() => res.sendStatus(404));
   },
@@ -18,6 +18,12 @@ const Journeys = {
     const journey = new Journey(this.params(req));
     journey.save()
         .then(() => res.json(journey))
+        .catch((err) => res.status(422).json(err));
+  },
+
+  update(req, res) {
+    Journey.update({ _id: req.params.id }, this.params(req))
+        .then((journey) => res.json(journey))
         .catch((err) => res.status(422).json(err));
   },
 
