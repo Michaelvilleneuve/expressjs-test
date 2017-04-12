@@ -9,6 +9,8 @@ router.route('/')
       .post((req, res) => Users.create(req, res))
       .delete(auth, (req, res) => Users.destroy(req, res));
 
+router.route('/me').get(auth, (req, res) => Users.me(req, res));
+
 router.route('/:id')
       .get((req, res) => Users.show(req, res));
 

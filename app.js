@@ -1,5 +1,6 @@
 import express from 'express';
 import morgan from 'morgan';
+import cors from 'cors';
 import bodyParser from 'body-parser';
 import params from 'strong-params';
 import logParams from './middlewares/logs';
@@ -10,6 +11,7 @@ import './config/auth';
 const app = express();
 const port = process.env.PORT || 8080;
 
+app.use(cors());
 app.use(morgan('combined'));
 app.use(bodyParser.json());
 app.use(params.expressMiddleware());

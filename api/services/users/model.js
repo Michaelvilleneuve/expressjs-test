@@ -14,7 +14,6 @@ const schema = mongoose.Schema({
     select: false,
     minlength: [6, 'Password must be at least 6 chars long']
   },
-  fid_number: { type: String, required: true },
   token: String,
 });
 
@@ -38,7 +37,7 @@ schema.post('remove', function (user) {
 
 schema.statics.authenticate = function (email, password) {
   return new Promise((resolve, reject) => {
-    User.findOne({ email }, 'token password')
+    User.findOne({ email }, 'token name email password')
         .then((user) => {
           user.comparePassword(password)
               .then(() => resolve(user))
