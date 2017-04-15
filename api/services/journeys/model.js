@@ -6,6 +6,8 @@ const schema = mongoose.Schema({
   lat: { type: Number, required: true },
   lng: { type: Number, required: true },
   image: String,
+  starts_at: Date,
+  ends_at: Date,
   user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true, select: false }
 });
 
