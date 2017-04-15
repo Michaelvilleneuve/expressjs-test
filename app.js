@@ -13,7 +13,7 @@ const port = process.env.PORT || 8080;
 
 app.use(cors());
 app.use(morgan('combined'));
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '50mb' }));
 app.use(params.expressMiddleware());
 app.use(logParams);
 app.use('/static', express.static('public'));
