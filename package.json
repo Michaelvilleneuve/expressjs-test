@@ -24,6 +24,7 @@
     "passport": "^0.3.2",
     "passport-http-bearer": "^1.0.1",
     "sha256": "^0.2.0",
+    "sharp": "^0.17.3",
     "strong-params": "^0.7.0"
   },
   "devDependencies": {
