@@ -1,4 +1,5 @@
 import Journey from './model';
+import Image from '../../../utils/Image';
 
 const Journeys = {
   index(req, res) {
@@ -14,9 +15,16 @@ const Journeys = {
 
   create(req, res) {
     const journey = new Journey(this.params(req));
-    journey.save()
-        .then(() => res.json(journey))
-        .catch((err) => res.status(422).json(err));
+    const path = `journeys/${journey._id}.jpg`;
+
+    Image.upload(journey.image, 1600, 900, path)
+        .then((image) => {
+            journey.image = image;
+            journey.save()
+                  .then(() => res.json(journey))
+                  .catch((err) => res.status(422).json(err));
+        })
+        .catch((er) => res.status(422).json(er));
   },
 
   update(req, res) {
