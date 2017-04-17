@@ -8,7 +8,7 @@ const Journeys = {
 
   show(req, res) {
     Journey.findOne(this.journey(req))
-        .select('title description lat lng image starts_at ends_at')
+        .select('title description lat lng image starts_at ends_at public')
         .then((user) => res.json(user))
         .catch(() => res.sendStatus(404));
   },

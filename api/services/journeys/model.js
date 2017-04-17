@@ -8,6 +8,7 @@ const schema = mongoose.Schema({
   image: String,
   starts_at: Date,
   ends_at: Date,
+  public: Boolean,
   user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true, select: false }
 });
 
