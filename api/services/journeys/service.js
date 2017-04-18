@@ -39,7 +39,7 @@ const Journeys = {
 
   params(req) {
     const params = req.parameters.permit(
-      'title', 'description', 'image', 'lng', 'lat', 'starts_at', 'ends_at'
+      'title', 'description', 'image', 'lng', 'lat', 'starts_at', 'ends_at', 'public'
     ).value();
     return Object.assign({ user: req.user }, params);
   },
